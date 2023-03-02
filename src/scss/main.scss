@@ -1,0 +1,58 @@
+@import "./base";
+@import "./fonts";
+@import "./mixins";
+@import "./varieble";
+@import "./vendor";
+@import "./header";
+@import "./footer";
+@import "./home-section";
+@import "./benefits-section";
+@import "./meal-programme-section";
+@import "./slider-gallery-section";
+@import "./form-questions-section";
+@import "./modal";
+
+$shadow: rgba(86, 86, 86, 0.4);
+$colorgreen: #64d36f;
+
+body.delete-scroll {
+  overflow: hidden;
+}
+
+.main {
+  flex: 1 1 auto;
+  position: relative;
+  transition: .7s;
+
+  &__container {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 11.5%;
+      right: -20%;
+      transform: translateY(-50%) scale(0.5);
+      width: calc(25rem + 895 * ((100vw - 20rem) / 1920));
+      height: calc(25rem + 895 * ((100vw - 20rem) / 1920));
+      border-radius: 50%;
+      background-color: $colorgreen;
+      box-shadow: 0 0 2.5em $shadow;
+      opacity: 0;
+      z-index: -1;
+    }
+  }
+}
+
+@media(max-width: 847px) {
+  .main__container::before {
+    top: 8%;
+    right: -5%;
+    width: 50rem;
+    height: 50rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .main__container::before {
+    top: 0%;
+  }
+}

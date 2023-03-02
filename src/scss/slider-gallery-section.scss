@@ -1,0 +1,143 @@
+$shadow: rgba(86, 86, 86, 0.5);
+$colorblack: #020202;
+$colorgreen: #26F03A1A;
+
+.slider-gallery-section {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: none;
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  &::before {
+    top: 10%;
+    left: -2%;
+    width: 18.75rem;
+    height: 18.75rem;
+    border: 1.25em solid $colorgreen;
+  }
+  &::after {
+    bottom: -50%;
+    width: 37.5rem;
+    height: 37.5rem;
+    right: -6.25rem;
+    background-color: $colorgreen;
+  }
+  &__container {
+    padding: 3.75em 0;
+  }
+}
+
+.slider-gallery {
+  width: 100%;
+  
+  &-title {
+    font-family: Comfortaa;
+    line-height: 2.125rem;
+    font-weight: 700;
+    font-size: 1.875em;
+    color: $colorblack;
+    padding-bottom: 3.75em;
+    text-align: center;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(1.875em);
+  }
+
+  &-track {
+    display: flex;
+    gap: 1.25em;
+    width: calc(47.5rem * 6);
+    transform: translateX(calc(-47.5rem * 3));
+    justify-content: space-between;
+    animation: auto-scroll 20s linear infinite reverse;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes auto-scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-47.5rem * 3));
+      }
+    }
+  }
+
+  &-slide {
+    display: flex;
+    align-items: center;
+    border-radius: 1.875em;
+    max-width: 23.75rem;
+    max-height: 35.625rem;
+    filter: drop-shadow(0 0 1.25em $shadow);
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1.875em;
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 990px) {
+  .slider-gallery-title {
+    font-size: 1.5em;
+    padding-bottom: 1.5em;
+  }
+}
+
+@media (max-width: 760px) {
+  .slider-gallery-slide {
+    max-height: 30rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .slider-gallery-slide {
+    max-height: 21.25em;
+  }
+}
+
+@media (max-width: 425px) {
+  .slider-gallery-section {
+    &::before {
+      left: -10%;
+      width: 10rem;
+      height: 10rem;
+      border-width: 0.625em;
+    }
+    &::after {
+      width: 20rem;
+      height: 20rem;
+    }
+  }  
+  .slider-gallery-title {
+    font-size: 1.25em;
+    padding-bottom: 1.25em;
+  }
+
+  .slider-gallery-track {
+    width: calc(50rem * 4);
+  }
+
+  @keyframes auto-scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-50rem * 4));
+    }
+  }
+}
